@@ -1,6 +1,12 @@
 import {mockJobs} from '@/data/mockJobs';
 import JobDetails from './job-details';
 
+interface PageProps {
+    params: {
+        id: string;
+    };
+}
+
 export async function generateMetadata({params}: {params: {id: string}}) {
     const {id} = await params;
     const job = mockJobs.find((job) => job.id === id);
@@ -12,8 +18,8 @@ export async function generateMetadata({params}: {params: {id: string}}) {
     };
 }
 
-const JobDetailsPage = async ({params}: {params: {id: string}}) => {
-    const {id} = await params;
+const JobDetailsPage = async ({params}: PageProps) => {
+    const {id} = params;
 
     return <JobDetails jobId={id} />;
 };
