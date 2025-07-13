@@ -7,8 +7,8 @@ interface PageProps {
     };
 }
 
-export async function generateMetadata({params}: {params: {id: string}}) {
-    const {id} = await params;
+export async function generateMetadata({params}: PageProps) {
+    const {id} = params;
     const job = mockJobs.find((job) => job.id === id);
 
     if (!job) return {title: 'Job Not Found!'};
