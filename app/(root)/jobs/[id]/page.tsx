@@ -20,7 +20,7 @@ export async function generateMetadata({params}: PageProps): Promise<Metadata> {
     };
 }
 
-const JobDetailsPage = async ({params}: PageProps) => {
+const JobDetailsPage = ({params}: PageProps) => {
     const {id} = params;
 
     return <JobDetails jobId={id} />;
