@@ -2,26 +2,31 @@ import {mockJobs} from '@/data/mockJobs';
 import JobDetails from './job-details';
 import {Metadata} from 'next';
 
-interface PageProps {
-    params: {
-        id: string;
-    };
-}
+type Props = {
+    params: Promise<{id: string}>;
+};
 
-export async function generateMetadata({params}: PageProps): Promise<Metadata> {
-    const {id} = params;
+export async function generateMetadata({params}: Props): Promise<Metadata> {
+    // read route params
+    const {id} = await params;
+
+    // fetch job
     const job = mockJobs.find((job) => job.id === id);
 
-    // returns false for a newly added job.
-    if (!job) return {title: 'Job Not Found!'};
+    // TODO: If new job is added, this returns undefined because the job is not in the mockJobs array rather in memory.
+    if (!job) {
+        return {
+            title: 'Job not found',
+        };
+    }
 
     return {
-        title: `${job.company} - ${job.title}`,
+        title: `${job.title} | ${job.company}`,
     };
 }
 
-const JobDetailsPage = ({params}: PageProps) => {
-    const {id} = params;
+const JobDetailsPage = async ({params}: Props) => {
+    const {id} = await params;
 
     return <JobDetails jobId={id} />;
 };
