@@ -25,3 +25,10 @@ export interface JobForm {
     applyUrl: string;
     tags: string[];
 }
+
+export interface JobFilters {
+    search: string;
+    location: string;
+    type: string;
+    company: string;
+}
