@@ -13,7 +13,7 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
     // fetch job
     const job = mockJobs.find((job) => job.id === id);
 
-    // TODO: If new job is added, this returns undefined because the job is not in the mockJobs array rather in memory.
+    // TODO: If a new job is added, this returns undefined because the job is not in the mockJobs array rather in memory.
     if (!job) {
         return {
             title: 'Job not found',
