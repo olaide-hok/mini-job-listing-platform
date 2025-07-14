@@ -1,3 +1,4 @@
+import SearchFilters from '@/components/SearchFilters';
 import Jobs from './Jobs';
 
 const Homepage = async () => {
@@ -19,8 +20,14 @@ const Homepage = async () => {
                             technology.
                         </p>
                     </div>
+
+                    {/* Search Section */}
+                    <div className="max-w-2xl mx-auto">
+                        <SearchFilters />
+                    </div>
                 </div>
             </section>
+            {/* Jobs Section */}
             <Jobs />
         </div>
     );
